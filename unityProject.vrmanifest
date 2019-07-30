@@ -5,7 +5,7 @@
       "app_key": "application.generated.unity.canttouchthis.exe",
       "launch_type": "url",
       "url": "steam://launch/",
-      "action_manifest_path": "D:\\Unity Projects\\CantTouchThis\\actions.json",
+      "action_manifest_path": "D:\\Unity Projects\\canttouchthis\\actions.json",
       "strings": {
         "en_us": {
           "name": "CantTouchThis [Testing]"

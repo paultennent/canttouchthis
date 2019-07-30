@@ -9,12 +9,14 @@ public class CTT_Sword : MonoBehaviour
     private Hand hand;
     private Rigidbody rb;
     private float HapticMultiplier = 1000f;
+    private CTT_SwordSounds sounds;
 
     // Start is called before the first frame update
     void Start()
     {
         hand = GetComponentInParent<Hand>();
         rb = GetComponent<Rigidbody>();
+        sounds = GetComponent<CTT_SwordSounds>();
     }
 
     // Update is called once per frame
@@ -27,6 +29,7 @@ public class CTT_Sword : MonoBehaviour
     {
         //hand.TriggerHapticPulse(1f, 100f, velocity + rb.velocity.magnitude * HapticMultiplier);
         StartCoroutine(LongVibration(0.1f, velocity + rb.velocity.magnitude * HapticMultiplier));
+        sounds.Play();
     }
 
     public void OnTriggerStay(Collider collision)
@@ -34,6 +37,7 @@ public class CTT_Sword : MonoBehaviour
         if (collision.gameObject.layer == LayerMask.NameToLayer("Weapon"))
         {
             hand.TriggerHapticPulse(3999);
+            sounds.Play();
         }
     }
 
