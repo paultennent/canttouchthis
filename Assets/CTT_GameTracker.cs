@@ -29,6 +29,12 @@ public class CTT_GameTracker : MonoBehaviour
     public SteamVR_Action_Boolean grabPinch; //Grab Pinch is the trigger, select from inspecter
     public SteamVR_Input_Sources inputSource = SteamVR_Input_Sources.Any;//which controller
 
+    public Transform ballPit;
+    public GameObject ballPrefab;
+
+    private GameObject[] balls;
+    private int curBall = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -112,6 +118,7 @@ public class CTT_GameTracker : MonoBehaviour
 
     public void gameReset()
     {
+        GenerateBalls(50);
         hits = 0;
         misses = 0;
         time = 0;
@@ -123,5 +130,34 @@ public class CTT_GameTracker : MonoBehaviour
     private float GetNextTriggerTime()
     {
         return defaultTriggerTime + UnityEngine.Random.Range(-timeVariation, +timeVariation);
+    }
+
+    private void GenerateBalls(int count)
+    {
+        if(balls == null)
+        {
+            balls = new GameObject[count];
+        }
+        else
+        {
+            foreach(GameObject ball in balls)
+            {
+                Destroy(ball);
+            }
+        }
+        for(int i = 0; i < count; i++)
+        {
+            balls[i] = Instantiate(ballPrefab, ballPit);
+        }
+        curBall = 0;
+    }
+
+    public GameObject getNextBall()
+    {
+        GameObject ball = balls[curBall];
+        curBall++;
+        ball.GetComponent<Rigidbody>().isKinematic = false;
+        ball.GetComponent<Rigidbody>().collisionDetectionMode = CollisionDetectionMode.Continuous;
+        return ball;
     }
 }

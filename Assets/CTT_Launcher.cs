@@ -5,8 +5,6 @@ using Valve.VR.InteractionSystem;
 
 public class CTT_Launcher : MonoBehaviour
 { 
-    public GameObject ammo;
-   
     public float power = 1000f;
 
     public float minAmmoRadius = 0.1f;
@@ -20,10 +18,12 @@ public class CTT_Launcher : MonoBehaviour
     ParticleSystem.EmissionModule emissionModule;
 
     AudioSource audioSource;
+    CTT_GameTracker game;
 
     // Start is called before the first frame update
     void Start()
     {
+        game = GameObject.Find("Control").GetComponent<CTT_GameTracker>();
         audioSource = GetComponent<AudioSource>();
         transform.LookAt(Player.instance.feetPositionGuess);
         smoke = transform.Find("WhiteSmoke").GetComponent<ParticleSystem>();
@@ -68,7 +68,9 @@ public class CTT_Launcher : MonoBehaviour
     {
         audioSource.Play();
         SetSmokeEmmissionRate(20f);
-        GameObject bullet = Instantiate(ammo, transform.position, transform.rotation);
+        GameObject bullet = game.getNextBall();//Instantiate(ammo, transform.position, transform.rotation);
+        bullet.transform.position = transform.position;
+        bullet.transform.rotation = transform.rotation;
         float radius = Random.Range(minAmmoRadius, maxAmmoRadius);
         bullet.transform.localScale = new Vector3(radius, radius, radius);
         Rigidbody rb = bullet.GetComponent<Rigidbody>();

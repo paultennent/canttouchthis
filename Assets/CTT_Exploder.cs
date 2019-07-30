@@ -33,6 +33,7 @@ public class CTT_Exploder : MonoBehaviour
                 {
                     GameObject explodePart = (GameObject)GameObject.Instantiate(explodePartPrefab, this.transform.position, this.transform.rotation);
                     explodePart.GetComponentInChildren<MeshRenderer>().material.SetColor("_TintColor", Random.ColorHSV(0f, 1f, 1f, 1f, 0.5f, 1f));
+                    explodePart.GetComponent<CTT_TTL>().activate_TTL();
                 }
                 collision.gameObject.GetComponent<CTT_Sword>().triggerHapticPulse(GetComponent<Rigidbody>().velocity.magnitude);
                 if (addToScore)
