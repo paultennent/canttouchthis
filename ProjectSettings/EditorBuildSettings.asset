@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/canttouchthis.unity
+    guid: eeb76b9f59656404b83c5c9ff051633f
   m_configObjects: {}

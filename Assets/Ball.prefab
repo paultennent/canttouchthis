@@ -124,7 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d0d527157669974188807892b5d9fd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minMagnitudeToExplode: 1
+  minMagnitudeToExplode: 0
   explodePartPrefab: {fileID: 1000011210241306, guid: aad9f1961f00fa54697a0c88180e19c7,
     type: 3}
   explodeCount: 10
@@ -246,14 +246,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   size: 500
   freq: 0.002
-  noiseScale: 1
+  noiseScale: 5
   la: 0.2
   lb: 0.2
   phi_a: 0.5
   phi_b: -0.5
   phi_c: 0.5
   phi_d: 0.5
-  mc: 0.2
-  md: 0.2
+  mc: 0.5
+  md: 0.5
   l0: 0.5
   n: 0.1

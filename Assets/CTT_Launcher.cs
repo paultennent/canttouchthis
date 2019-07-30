@@ -59,12 +59,12 @@ public class CTT_Launcher : MonoBehaviour
         return Random.Range(-yawAngleVariationDegrees, +yawAngleVariationDegrees);
     }
 
-    public void Fire()
+    public void Fire(float forceScaler)
     {
-        StartCoroutine(FireProcedure());
+        StartCoroutine(FireProcedure(forceScaler));
     }
 
-    private IEnumerator FireProcedure()
+    private IEnumerator FireProcedure(float forceScaler)
     {
         audioSource.Play();
         SetSmokeEmmissionRate(20f);
@@ -73,8 +73,10 @@ public class CTT_Launcher : MonoBehaviour
         bullet.transform.rotation = transform.rotation;
         float radius = Random.Range(minAmmoRadius, maxAmmoRadius);
         bullet.transform.localScale = new Vector3(radius, radius, radius);
+        bullet.transform.Find("Billboard").gameObject.GetComponent<Renderer>().sharedMaterial.SetFloat("_ScaleX", radius);
+        bullet.transform.Find("Billboard").gameObject.GetComponent<Renderer>().sharedMaterial.SetFloat("_ScaleY", radius);
         Rigidbody rb = bullet.GetComponent<Rigidbody>();
-        rb.AddForce(transform.forward * power,ForceMode.Force);
+        rb.AddForce(transform.forward * power * forceScaler,ForceMode.Force);
         readyToFire = false;
         yield return new WaitForSeconds(0.25f);
         SetSmokeEmmissionRate(0f);

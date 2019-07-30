@@ -35,6 +35,15 @@ public class CTT_GameTracker : MonoBehaviour
     private GameObject[] balls;
     private int curBall = 0;
 
+    public float minForceScaler = 0.1f;
+    public float maxForceScaler = 1f;
+
+    public int level = 1;
+    private float levelTime = 0f;
+    public float levelChangeTime = 10f;
+
+    public int preGeneratedBalls = 25;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -74,7 +83,7 @@ public class CTT_GameTracker : MonoBehaviour
 
         if (gameActive) {
             time = time + Time.deltaTime;
-            title.text = "";
+            title.text = "Level:"+(level+1);
             scores.text = "Time:" + (gameTime - (int)time) + "\nHits:" + hits + "\nMisses:" + misses;
             if (time > gameTime)
             {
@@ -88,18 +97,32 @@ public class CTT_GameTracker : MonoBehaviour
         if (gameActive)
         {
             curTime = curTime - Time.deltaTime;
+            levelTime = levelTime - Time.deltaTime;
             if (curTime <= .5f && !curLauncher.isReadyToFire())
             {
+                
                 curLauncher.PrepareToFire();
             }
 
             if (curTime <= 0)
             {
-                curLauncher.Fire();
+                curLauncher.Fire(Random.Range(minForceScaler,maxForceScaler));
                 curTime = GetNextTriggerTime();
                 curLauncher = launchers[UnityEngine.Random.Range(0, launchers.Length)];
             }
+            if(levelTime <= 0)
+            {
+                level++;
+                foreach(CTT_Launcher l in launchers)
+                {
+                    l.pitchAngleVariationDegrees = (level) * .2f;
+                    l.yawAngleVariationDegrees = (level) * .2f;
+                }
+                levelTime = levelChangeTime;
+            }
         }
+
+        
 
 
 
@@ -118,12 +141,14 @@ public class CTT_GameTracker : MonoBehaviour
 
     public void gameReset()
     {
-        GenerateBalls(50);
+        GenerateBalls(preGeneratedBalls);
         hits = 0;
         misses = 0;
         time = 0;
+        level = 0;
         gameActive = true;
         curTime = GetNextTriggerTime();
+        levelTime = levelChangeTime;
         curLauncher = launchers[UnityEngine.Random.Range(0, launchers.Length)];
     }
 

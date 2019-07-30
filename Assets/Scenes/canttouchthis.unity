@@ -240,10 +240,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   power: 150
-  minAmmoRadius: 0.1
+  minAmmoRadius: 0.5
   maxAmmoRadius: 1
-  pitchAngleVariationDegrees: 1.5
-  yawAngleVariationDegrees: 1.5
+  pitchAngleVariationDegrees: 0
+  yawAngleVariationDegrees: 0
 --- !u!23 &174668386
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -599,10 +599,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   power: 150
-  minAmmoRadius: 0.1
+  minAmmoRadius: 0.5
   maxAmmoRadius: 1
-  pitchAngleVariationDegrees: 1.5
-  yawAngleVariationDegrees: 1.5
+  pitchAngleVariationDegrees: 0
+  yawAngleVariationDegrees: 0
 --- !u!23 &244293033
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1162,7 +1162,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 603778722}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.03, z: 0}
+  m_LocalPosition: {x: 0, y: -0.094, z: 0}
   m_LocalScale: {x: 2, y: 0.1, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1217,10 +1217,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   power: 150
-  minAmmoRadius: 0.1
+  minAmmoRadius: 0.5
   maxAmmoRadius: 1
-  pitchAngleVariationDegrees: 1.5
-  yawAngleVariationDegrees: 1.5
+  pitchAngleVariationDegrees: 0
+  yawAngleVariationDegrees: 0
 --- !u!23 &624056895
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1411,10 +1411,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   power: 150
-  minAmmoRadius: 0.1
+  minAmmoRadius: 0.5
   maxAmmoRadius: 1
-  pitchAngleVariationDegrees: 1.5
-  yawAngleVariationDegrees: 1.5
+  pitchAngleVariationDegrees: 0
+  yawAngleVariationDegrees: 0
 --- !u!23 &630508328
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1605,10 +1605,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   power: 150
-  minAmmoRadius: 0.1
+  minAmmoRadius: 0.5
   maxAmmoRadius: 1
-  pitchAngleVariationDegrees: 1.5
-  yawAngleVariationDegrees: 1.5
+  pitchAngleVariationDegrees: 0
+  yawAngleVariationDegrees: 0
 --- !u!23 &748868028
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2152,10 +2152,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   power: 150
-  minAmmoRadius: 0.1
+  minAmmoRadius: 0.5
   maxAmmoRadius: 1
-  pitchAngleVariationDegrees: 1.5
-  yawAngleVariationDegrees: 1.5
+  pitchAngleVariationDegrees: 0
+  yawAngleVariationDegrees: 0
 --- !u!23 &907956952
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2376,6 +2376,11 @@ MonoBehaviour:
   ballPit: {fileID: 880769395}
   ballPrefab: {fileID: 7136130427809880649, guid: 8bc80503b9d2e614baad4d77ac7b671f,
     type: 3}
+  minForceScaler: 0.8
+  maxForceScaler: 1
+  level: 0
+  levelChangeTime: 10
+  preGeneratedBalls: 50
 --- !u!1001 &1151605085
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2739,10 +2744,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   power: 150
-  minAmmoRadius: 0.1
+  minAmmoRadius: 0.5
   maxAmmoRadius: 1
-  pitchAngleVariationDegrees: 1.5
-  yawAngleVariationDegrees: 1.5
+  pitchAngleVariationDegrees: 0
+  yawAngleVariationDegrees: 0
 --- !u!23 &1372997793
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3281,10 +3286,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   power: 150
-  minAmmoRadius: 0.1
+  minAmmoRadius: 0.5
   maxAmmoRadius: 1
-  pitchAngleVariationDegrees: 1.5
-  yawAngleVariationDegrees: 1.5
+  pitchAngleVariationDegrees: 0
+  yawAngleVariationDegrees: 0
 --- !u!23 &1625207448
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4061,10 +4066,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   power: 150
-  minAmmoRadius: 0.1
+  minAmmoRadius: 0.5
   maxAmmoRadius: 1
-  pitchAngleVariationDegrees: 1.5
-  yawAngleVariationDegrees: 1.5
+  pitchAngleVariationDegrees: 0
+  yawAngleVariationDegrees: 0
 --- !u!23 &1839367639
 MeshRenderer:
   m_ObjectHideFlags: 0
