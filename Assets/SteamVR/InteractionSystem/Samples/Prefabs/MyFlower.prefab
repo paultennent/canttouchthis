@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 114000010830299382}
   - component: {fileID: 114000014078190628}
   - component: {fileID: -4935166397634522904}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: MyFlower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -160,6 +160,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b89812bf5cd14a45829abbb183557af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeToLive: 5
 --- !u!1 &1000013831932218
 GameObject:
   m_ObjectHideFlags: 0
@@ -172,7 +173,7 @@ GameObject:
   - component: {fileID: 33000012902973200}
   - component: {fileID: 23000013980400540}
   - component: {fileID: 65000013550508472}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Flower (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -264,7 +265,7 @@ GameObject:
   - component: {fileID: 33000010422820170}
   - component: {fileID: 23000010390661384}
   - component: {fileID: 95000012509869740}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Flower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
