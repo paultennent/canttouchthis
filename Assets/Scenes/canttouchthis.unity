@@ -6101,11 +6101,9 @@ MonoBehaviour:
   levelChangeTime: 10
   preGeneratedBalls: 50
   music: {fileID: 1671190495}
-  enableALMessages: 1
+  enableALMessages: 0
   leftWeapon: {fileID: 2075234414}
   rightWeapon: {fileID: 49866124}
-  leftButtonHints: {fileID: 0}
-  rightButtonHints: {fileID: 0}
 --- !u!114 &1094659584
 MonoBehaviour:
   m_ObjectHideFlags: 0

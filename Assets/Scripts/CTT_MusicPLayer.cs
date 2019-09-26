@@ -22,10 +22,11 @@ public class CTT_MusicPLayer : MonoBehaviour
     {
         if (!aud.isPlaying)
         {
-            trackcounter += 1;
-            if(trackcounter == tracks.Length)
-            {
+            if (trackcounter == -1) {
                 trackcounter = 0;
+            }
+            else {
+                trackcounter = Random.Range(0,tracks.Length);
             }
             aud.clip = tracks[trackcounter];
             aud.Play();
@@ -34,7 +35,13 @@ public class CTT_MusicPLayer : MonoBehaviour
 
     public void restart()
     {
-        trackcounter = -1;
         aud.Stop();
+        trackcounter = Random.Range(0, tracks.Length);
+    }
+
+    public void restartMenu()
+    {
+        aud.Stop();
+        trackcounter = -1;
     }
 }

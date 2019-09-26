@@ -114,6 +114,7 @@ public class CTT_GameTracker : MonoBehaviour
                 handHider.hideControllers = false;
                 leftWeapon.switchWeapon(CTT_WeaponSwap.Weapon.None);
                 rightWeapon.switchWeapon(CTT_WeaponSwap.Weapon.None);
+                music.restartMenu();
             }
         }
 
