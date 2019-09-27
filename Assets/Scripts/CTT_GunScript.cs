@@ -11,6 +11,8 @@ public class CTT_GunScript : MonoBehaviour
     public SteamVR_Action_Boolean grabPinch; //Grab Pinch is the trigger, select from inspecter
     public SteamVR_Input_Sources inputSource = SteamVR_Input_Sources.Any;//which controller
 
+    public SteamVR_Action_Boolean cock; //Grab Pinch is the trigger, select from inspecter
+
     public GameObject bulletPrefab;
     private Transform bulletPos;
 
@@ -22,6 +24,7 @@ public class CTT_GunScript : MonoBehaviour
     private ParticleSystem smoke;
     ParticleSystem.EmissionModule emissionModule;
     AudioSource audioSource;
+    public CTT_PistolFireAnimation pf;
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +32,10 @@ public class CTT_GunScript : MonoBehaviour
         if (grabPinch != null)
         {
             grabPinch.AddOnStateDownListener(OnTriggerPressed, inputSource);
+        }
+        if (cock != null)
+        {
+            cock.AddOnStateDownListener(OnDPadPressed, inputSource);
         }
         bulletPos = transform.Find("BulletPos");
         hand = GetComponentInParent<Hand>();
@@ -38,11 +45,22 @@ public class CTT_GunScript : MonoBehaviour
         SetSmokeEmmissionRate(0f);
     }
 
+    private void OnDPadPressed(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource)
+    {
+        if(!pf.cocked && !pf.cocking)
+        {
+            pf.cock();
+        }
+    }
+
     private void OnTriggerPressed(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource)
     {
         if (GameObject.Find("Control").GetComponent<CTT_GameTracker>().isGameActive())
         {
-            StartCoroutine(FireProcedure());
+            if (pf.cocked & !pf.cocking)
+            {
+                StartCoroutine(FireProcedure());
+            }
         }
         else
         {
@@ -52,6 +70,7 @@ public class CTT_GunScript : MonoBehaviour
 
     private IEnumerator FireProcedure()
     {
+        pf.fire();
         triggerHapticPulse(10);
         audioSource.Play();
         yield return new WaitForSeconds(0.1f);
