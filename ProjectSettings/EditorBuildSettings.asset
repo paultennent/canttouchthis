@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/canttouchthis.unity
-    guid: eeb76b9f59656404b83c5c9ff051633f
+    path: Assets/Scenes/canttouchthisquest.unity
+    guid: 7a085607144e9d146869af146e9219d8
   m_configObjects: {}

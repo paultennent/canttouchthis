@@ -6,7 +6,7 @@ public class CTT_SwordSounds : MonoBehaviour
 {
 
     public AudioClip[] swordSounds;
-    public AudioSource audioSource;
+    private AudioSource audioSource;
     public AudioClip balloonPop;
 
     void Start()

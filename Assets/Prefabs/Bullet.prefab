@@ -70,6 +70,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -143,7 +144,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 67fe8c55d4557be448c62a53a5df5c4b, type: 3}
   - {fileID: 8300000, guid: 120fb36600a23ed4eb6c1b2ec68b1721, type: 3}
   - {fileID: 8300000, guid: b5bdbe2529afc4e428bebcf276194911, type: 3}
-  audioSource: {fileID: 0}
   balloonPop: {fileID: 8300000, guid: 3cae51e7fbccb9c43add6235501b2b8a, type: 3}
 --- !u!82 &-6637402679982259580
 AudioSource:
