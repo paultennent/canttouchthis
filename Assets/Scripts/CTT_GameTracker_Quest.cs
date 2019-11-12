@@ -8,6 +8,8 @@ public class CTT_GameTracker_Quest : MonoBehaviour
 
     public TextMeshPro scores;
     public TextMeshPro title;
+    public GameObject info;
+
     int hits = 0;
     int misses = 0;
     float time = 0;
@@ -26,6 +28,7 @@ public class CTT_GameTracker_Quest : MonoBehaviour
 
     public Transform ballPit;
     public GameObject ballPrefab;
+    public GameObject notBallPrefab;
 
     private GameObject[] balls;
     private int curBall = 0;
@@ -95,6 +98,7 @@ public class CTT_GameTracker_Quest : MonoBehaviour
                 leftWeapon.switchWeapon(CTT_WeaponSwap_Quest.Weapon.None);
                 rightWeapon.switchWeapon(CTT_WeaponSwap_Quest.Weapon.None);
                 music.restartMenu();
+                info.SetActive(true);
             }
         }
 
@@ -163,12 +167,20 @@ public class CTT_GameTracker_Quest : MonoBehaviour
 
     public void AddHit()
     {
+        GameObject.Find("Yay").GetComponent<AudioSource>().Play();
         hits++;
+    }
+
+    public void AddHitNotRealBall()
+    {
+        GameObject.Find("Boo").GetComponent<AudioSource>().Play();
+        misses++;
     }
 
     public void AddMiss()
     {
-        misses++;
+        //ignore misses - it's only balls and not balls we care about.
+        //misses++;
     }
 
     public void gameReset()
@@ -198,6 +210,7 @@ public class CTT_GameTracker_Quest : MonoBehaviour
         {
             t.gameObject.SetActive(true);
         }
+        info.SetActive(false);
     }
 
     private float GetNextTriggerTime()
@@ -209,10 +222,21 @@ public class CTT_GameTracker_Quest : MonoBehaviour
 
     public GameObject getNextBall()
     {
-        GameObject ball = Instantiate(ballPrefab, ballPit);
-        ball.GetComponent<Rigidbody>().isKinematic = false;
-        ball.GetComponent<Rigidbody>().collisionDetectionMode = CollisionDetectionMode.Continuous;
-        return ball;
+        float r = Random.Range(0, 1f);
+        if (r <= .5f)
+        {
+            GameObject ball = Instantiate(ballPrefab, ballPit);
+            ball.GetComponent<Rigidbody>().isKinematic = false;
+            ball.GetComponent<Rigidbody>().collisionDetectionMode = CollisionDetectionMode.Continuous;
+            return ball;
+        }
+        else
+        {
+            GameObject ball = Instantiate(notBallPrefab, ballPit);
+            ball.GetComponent<Rigidbody>().isKinematic = false;
+            ball.GetComponent<Rigidbody>().collisionDetectionMode = CollisionDetectionMode.Continuous;
+            return ball;
+        }
     }
 
     private void  killAllBalls()

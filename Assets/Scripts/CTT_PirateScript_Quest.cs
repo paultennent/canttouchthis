@@ -22,13 +22,18 @@ public class CTT_PirateScript_Quest : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Weapon"))
         {
-            GameObject ragdoll = Instantiate(ragdollPrefab);
-            ragdoll.transform.parent = GameObject.Find("BodyPit").transform;
-            ragdoll.transform.localScale = transform.localScale;
-            CTT_Ragdoll_Quest rs = ragdoll.GetComponent<CTT_Ragdoll_Quest>();
-            rs.doCopyPosition(transform);
-            rs.doHit();
-            gameObject.SetActive(false);
+            doKill();
         }
+    }
+
+    public void doKill()
+    {
+        GameObject ragdoll = Instantiate(ragdollPrefab);
+        ragdoll.transform.parent = GameObject.Find("BodyPit").transform;
+        ragdoll.transform.localScale = transform.localScale;
+        CTT_Ragdoll_Quest rs = ragdoll.GetComponent<CTT_Ragdoll_Quest>();
+        rs.doCopyPosition(transform);
+        rs.doHit();
+        gameObject.SetActive(false);
     }
 }

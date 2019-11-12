@@ -22,6 +22,8 @@ public class CTT_GunScript_Quest : MonoBehaviour
     AudioSource audioSource;
     public CTT_PistolFireAnimation pf;
 
+    public AudioSource popper;
+
     public enum Hand
     {
         LEFT,
@@ -79,6 +81,26 @@ public class CTT_GunScript_Quest : MonoBehaviour
         Rigidbody rb = bullet.GetComponent<Rigidbody>();
         rb.AddForce(transform.forward * power, ForceMode.Force);
         yield return new WaitForSeconds(0.15f);
+
+        RaycastHit hit;
+        // Does the ray intersect any objects excluding the player layer
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity))
+        {
+            CTT_Exploder_Quest eq = hit.collider.gameObject.GetComponent<CTT_Exploder_Quest>();
+            if(eq != null)
+            {
+                eq.doExplode();
+                popper.Play();
+                Destroy(bullet);
+            }
+            CTT_PirateScript_Quest pq = hit.collider.gameObject.GetComponent<CTT_PirateScript_Quest>();
+            if(pq != null)
+            {
+                pq.doKill();
+                Destroy(bullet);
+            }
+        }
+
         SetSmokeEmmissionRate(0f);
 
     }

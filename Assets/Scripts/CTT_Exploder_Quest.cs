@@ -11,6 +11,7 @@ public class CTT_Exploder_Quest : MonoBehaviour
     public int explodeCount = 10;
     public GameObject infoPrefab;
     public bool addToScore = true;
+    public bool realBall = true;
 
     void Start()
     {
@@ -27,34 +28,51 @@ public class CTT_Exploder_Quest : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Weapon"))
         {
-            for (int explodeIndex = 0; explodeIndex < explodeCount; explodeIndex++)
-            {
-                GameObject explodePart = (GameObject)GameObject.Instantiate(explodePartPrefab, this.transform.position, this.transform.rotation);
-                explodePart.GetComponentInChildren<MeshRenderer>().material.SetColor("_TintColor", Random.ColorHSV(0f, 1f, 1f, 1f, 0.5f, 1f));
-                explodePart.GetComponent<CTT_TTL>().activate_TTL();
-            }
             if (collision.gameObject.GetComponent<CTT_Sword_Quest>() != null)
             {
                 collision.gameObject.GetComponent<CTT_Sword_Quest>().triggerHapticPulse(GetComponent<Rigidbody>().velocity.magnitude);
             }
             collision.gameObject.GetComponent<CTT_SwordSounds>().PlayPop();
-            if (addToScore)
+
+            doExplode();
+
+            if (collision.gameObject.tag == "projectile")
+            {
+                Destroy(collision.gameObject, 1f);
+            }
+        }
+    }
+
+    public void doExplode()
+    {
+        for (int explodeIndex = 0; explodeIndex < explodeCount; explodeIndex++)
+        {
+            GameObject explodePart = (GameObject)GameObject.Instantiate(explodePartPrefab, this.transform.position, this.transform.rotation);
+            explodePart.GetComponentInChildren<MeshRenderer>().material.SetColor("_TintColor", Random.ColorHSV(0f, 1f, 1f, 1f, 0.5f, 1f));
+            explodePart.GetComponent<CTT_TTL>().activate_TTL();
+        }
+        
+
+        if (addToScore)
+        {
+            if (realBall)
             {
                 GameObject.Find("Control").GetComponent<CTT_GameTracker_Quest>().AddHit();
             }
-
-            if (GameObject.Find("Control").GetComponent<CTT_GameTracker_Quest>().enableALMessages)
+            else
             {
-                GameObject floater = Instantiate(infoPrefab);
-                floater.GetComponent<CTT_TTL>().activate_TTL();
-                floater.transform.parent = GameObject.Find("InfoPit").transform;
-                floater.transform.position = transform.position;
+                GameObject.Find("Control").GetComponent<CTT_GameTracker_Quest>().AddHitNotRealBall();
             }
-            if (collision.gameObject.tag == "projectile")
-            {
-                Destroy(collision.gameObject,1f);
-            }
-            Destroy(this.gameObject);
         }
+
+        if (GameObject.Find("Control").GetComponent<CTT_GameTracker_Quest>().enableALMessages)
+        {
+            GameObject floater = Instantiate(infoPrefab);
+            floater.GetComponent<CTT_TTL>().activate_TTL();
+            floater.transform.parent = GameObject.Find("InfoPit").transform;
+            floater.transform.position = transform.position;
+        }
+       
+        Destroy(this.gameObject);
     }
 }

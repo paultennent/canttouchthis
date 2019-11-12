@@ -9,7 +9,8 @@ public class CTT_TextGen : MonoBehaviour
 
     public int size = 200;
 
-    bool ready = false;
+    public bool ready = false;
+
 
     // Start is called before the first frame update
     void Awake()
